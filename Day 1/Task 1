@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NewTask1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the size of the array:");
+            string input = Console.ReadLine();
+            int size=int.Parse(input);
+
+            if (size >= 3 && size <= 104)
+            {
+                int[] num = new int[size];
+
+                Console.WriteLine($"Enter size the values:");
+                bool valid = true;
+
+               for (int i = 0; i < size; i++)
+                {
+                    input = Console.ReadLine();
+                    int value =int.Parse(input);
+                    if (value >= -1000 && value <= 1000)
+                    {
+                        num[i] = value;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input.");
+                        valid = false;
+                        break;
+                    }
+                }
+
+                if (valid)
+                {
+                  Array.Sort(num);
+                    
+        int max1 = num[size - 1] * num[size - 2] * num[size - 3];
+
+
+        int max2 = num[0] * num[1] * num[size - 1];
+
+
+        int maxProduct = Math.Max(max1, max2);
+
+
+        Console.WriteLine("The maximum product of three numbers in the array is: " + maxProduct);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
