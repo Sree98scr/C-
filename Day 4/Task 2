@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Task4_2_
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter the number of gas stations: ");
+            int size = int.Parse(Console.ReadLine());
+
+            int[] gas = new int[size];
+            int[] cost = new int[size];
+
+            Console.WriteLine("Enter the gas values :");
+            for (int i = 0; i < size; i++)
+            {
+                gas[i] = int.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine("Enter the cost values:");
+            for (int i = 0; i < size; i++)
+            {
+                cost[i] = int.Parse(Console.ReadLine());
+            }
+
+            int totalGas = 0;
+            int totalCost = 0;
+            int currentBalance = 0;
+            int startIndex = 0;
+
+            for (int i = 0; i < size; i++)
+            {
+                totalGas += gas[i];
+                totalCost += cost[i];
+                currentBalance += gas[i] - cost[i];
+
+                if (currentBalance < 0)
+                {
+                    startIndex = i + 1;
+                    currentBalance = 0;
+                }
+            }
+
+            int result;
+            if (totalGas >= totalCost)
+            {
+                result = startIndex;
+            }
+            else
+            {
+                result = -1;
+            }
+
+            Console.WriteLine("The starting gas station index is: " + result);
+
+            Console.ReadLine();
+        }
+    }
+}
